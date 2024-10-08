@@ -8,9 +8,13 @@
 
 Téléchargez le graphe des aéroports augment´e avec les populations des villes. Vérifiez que vous êtes capables de charger dans un objet pytorch (voir TP précédent pour les lignes a écrire pour que ça fonctionne.)
 
+[Link to the dataset](./dataset/airportsAndCoordAndPop.graphml)
+
 #### (b) Entrainez un modèle GCN simple
 
 Vérifier que vous êtes capables d'entrainer sur ce réseau l'un des GCN simples que vous avez écrit lors du premier TP.
+
+
 
 ---
 
