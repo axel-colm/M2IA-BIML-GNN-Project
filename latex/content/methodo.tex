@@ -1,0 +1,34 @@
+\section{Methode de classification}
+Pour cette étude, j'ai choisi d'utiliser un modèle de Graph Convolutional Network (GCN) pour la classification des aéroports. 
+
+\subsection{Graphe Convolutional Network (GCN)} 
+Les GCN sont des réseaux de neurones spécifiquement conçus pour traiter des données structurées sous forme de graphes,  ce qui les rend particulièrement adaptés à notre problématique.  
+Ils permettent d'apprendre des représentations vectorielles des nœuds (dans notre cas, les aéroports) en tenant compte à la fois des informations propres à chaque nœud (attributs) et de la structure du graphe (connexions avec les autres nœuds).\\
+Ils sera donc intéressant d'interpréter les résultats obtenus pour comprendre comment les diffétents attributs et la structure du graphe influent sur sa capacité à classifier les aéroports par pays.\\
+\\
+Le modèle GCN que nous avons utilisé est composé de trois couches de convolution, chacune suivie d'une fonction d'activation ReLU. La dernière couche est suivie d'une fonction d'activation softmax
+pour obtenir une distribution de probabilité sur les pays.\\
+% Code embelling
+\begin{lstlisting}[language=Python]
+class GCN(nn.Module):
+    def __init__(self, dim_in, dim_h, dim_out):
+        super(GCN, self).__init__()
+        self.conv1 = gnn.GCNConv(dim_in, dim_h)
+        self.conv2 = gnn.GCNConv(dim_h, dim_h)
+        self.conv3 = gnn.GCNConv(dim_h, dim_out)
+        
+        
+    def forward(self, x, edge_index, edge_weight):
+        x = F.relu(self.conv1(x, edge_index, edge_weight))
+        x = F.relu(self.conv2(x, edge_index, edge_weight))
+        x = self.conv3(x, edge_index, edge_weight)
+        return  F.log_softmax(x, dim=1)
+\end{lstlisting}
+
+
+\subsection{Métriques d'évaluation}
+Pour évaluer la performance de notre modèle, nous avons utilisé deux métriques d'évaluation: la précision. 
+La précision est le nombre de prédictions correctes divisé par le nombre total de prédictions. Elle permet de mesurer la capacité du modèle à classifier correctement les aéroports par pays.\\
+
+
+

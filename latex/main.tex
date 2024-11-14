@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{needspace}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{listings}
+
+% set href color to blue with underline
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Projet GNN - Rapport},
+    pdfpagemode=FullScreen,
+}
+
+\title{Projet BIML - Rapport}
+\author{Axel COLMANT}
+\date{\today}
+
+% Additional information
+\newcommand{\matiere}{Bio-Inspired Machine Learning}
+\newcommand{\professeur}{Rémy Cazabet}
+
+% Change geometry of the page
+\geometry{
+    a4paper,
+    left=30mm,
+    right=30mm,
+    top=30mm,
+    bottom=30mm
+}
+\pagestyle{plain}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \textbf{Matière:} \matiere \\
+    \textbf{Professeur:} \professeur
+\end{center}
+
+\vspace{1cm}
+
+\tableofcontents
+\clearpage
+
+\input{content/intro.tex}
+\input{content/data.tex}
+\input{content/methodo.tex}
+\input{content/result.tex}
+
+
+
+\end{document}

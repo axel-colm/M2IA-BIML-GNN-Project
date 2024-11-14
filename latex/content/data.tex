@@ -1,0 +1,40 @@
+\section{Données}
+Les données utilisées pour ce projet proviennent du fichier \href{http://cazabetremy.fr/Teaching/IAbioInspire/airportsAndCoordAndPop.graphml}{airportsAndCoordAndPop.graphml} fourni par le professeur, Remy Cazabet
+
+\subsection{Description des données}
+
+Ce fichier est un graphe non orienté où les sommets sont les aéroports et les arêtes les routes aériennes. Chaque sommet est caractérisé par les attributs suivants:
+\begin{itemize}
+    \item \textbf{country}: le nom du pays de l'aéroport (string)
+    \item \textbf{city\_name}: la nom de la ville de l'aéroport (string)
+    \item \textbf{lat}: la latitude de l'aéroport (float)
+    \item \textbf{lon}: la longitude de l'aéroport (float)
+    \item \textbf{population}: la population de la ville de l'aéroport (int)
+\end{itemize}
+
+\subsection{Prétraitement des données}
+Avant d'appliquer les algorithmes de classification, nous avons effectué un pré-traitement des données afin de les adapter à notre modèle GCN. 
+
+\begin{itemize}
+    \item {
+        \textbf{Filtering}: J'ai filtré les données pour ne conserver que les aéroports des pays pour lesquels nous avons un grand nombre d'exemples. Cela nous permettra d'avoir un jeu de données plus équilibré et éviter les biais dus à un faible nombre d'exemples pour certains pays.\\
+        \textit{Pour mes tests j'ai principalement utilsié ces trois valeurs: 10, 50 et 100. Qui donne respectivement 67, 12 et 4 pays différents.}
+    }
+    \item {
+        \textbf{Selection}: J'ai sélectionné les attributs d'entrée et de sortie du modèle. Les attributs d'entrée sont \textit{lat}, \textit{lon} et \textit{population}, tandis que l'attribut de sortie est \textit{country}.
+    }
+    \item {
+        \textbf{Encoding}: J'ai encodé les attributs catégoriels \textit{country} et \textit{city\_name} en utilisant un \textit{LabelEncoder} de la librairie \textit{scikit-learn}. Cela permet de transformer les noms de pays et de villes en entiers, ce qui est nécessaire pour les utiliser dans un modèle de machine learning.
+    }
+    \item {
+        \textbf{Normalization}: J'ai normalisé les attributs \textit{lat}, \textit{lon} et \textit{population} en utilisant un \textit{StandardScaler} de la librairie \textit{scikit-learn}. Cela permet de mettre à la même échelle les différentes caractéristiques des données, ce qui est important pour l'entraînement de modèles de machine learning.
+    }
+    \item {
+        \textbf{Splitting}: J'ai divisé les données en ensembles d'entraînement, de validation et de test (80\%, 10\%, 10\%). Cela permet d'évaluer la performance du modèle sur des données qu'il n'a pas vues pendant l'entraînement.
+    }
+    \item {
+        \textbf{Autres}: J'ai effectué d'autres types de prétraitement spécifiques à certains tests que j'ai réalisés, tels que la création de graphes de connexions aériennes pondérés par la distance géographique entre les aéroports.
+    }
+\end{itemize}
+
+Ce pré-traitement nous permet d'obtenir des données structurées sous forme de graphes,  prêtes à être utilisées par notre modèle GCN.  En variant les attributs et la structure du graphe,  nous pourrons analyser l'influence de ces facteurs sur la performance de la classification des aéroports par pays.
